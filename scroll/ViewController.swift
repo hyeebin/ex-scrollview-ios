@@ -14,21 +14,20 @@ class ViewController: UIViewController {
     lazy var scrollView: UIScrollView = {
         var view = UIScrollView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .white
+        view.alwaysBounceVertical = false
+        view.isDirectionalLockEnabled = true
         return view
     }()
 
     lazy var widthBaseView: UIView = {
         var view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .black
         return view
     }()
     
     lazy var widthStackView: UIStackView = {
         var view = UIStackView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .black
         view.axis = .horizontal
         view.distribution = .fillEqually
         view.alignment = .fill
@@ -129,7 +128,8 @@ class ViewController: UIViewController {
         ]
         
         let redBaseViewConstraints = [
-            redBaseView.widthAnchor.constraint(equalToConstant: 200)
+            redBaseView.widthAnchor.constraint(equalToConstant: 200),
+            redBaseView.heightAnchor.constraint(equalTo: scrollView.heightAnchor),
         ]
         
         NSLayoutConstraint.activate(scrollViewConstraints)
@@ -138,10 +138,8 @@ class ViewController: UIViewController {
         NSLayoutConstraint.activate(redBaseViewConstraints)
         
         let width = widthBaseView.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
-        width.priority = UILayoutPriority(251)
+        width.priority = UILayoutPriority(250)
         width.isActive = true
-
     }
-    
 }
 
